@@ -6,3 +6,17 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+@media screen and (max-width:890px){
+    .profile {
+        max-width: 720px;
+    }
+}
+
+@media screen and (max-width:765px) {
+    .profile {
+        max-width: 282px;
+        flex-direction: column;
+    }
+    
+}

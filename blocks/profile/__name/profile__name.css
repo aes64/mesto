@@ -8,3 +8,12 @@
     padding: 0;
     align-self: flex-end;
 }
+
+@media screen and (max-width:765px){
+    .profile__name {
+        font-size: 27px;
+        line-height: 33px;
+        text-align: center;
+    }
+    
+}
