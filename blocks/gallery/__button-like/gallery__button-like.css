@@ -9,3 +9,7 @@
     background-color: #fff;
     
 }
+
+.gallery__button-like:hover {
+    opacity: 0.3;
+}

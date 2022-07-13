@@ -16,14 +16,14 @@
         <main>
             <section class="profile">
                 <div class="profile__box">
-                <img src="./images/profile-photo.jpg" alt="фото пользователя" class="profile__photo">
-                <div class="profile__info">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button class="profile__button-edit"></button>
-                    <p class="profile__caption">Исследователь океана</p>
+                    <img src="./images/profile-photo.jpg" alt="фото пользователя" class="profile__photo">
+                    <div class="profile__info">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <button class="profile__button-edit link" type="button"></button>
+                        <p class="profile__caption">Исследователь океана</p>
+                    </div>
                 </div>
-            </div>
-                <div class="profile__add-button"></div>
+                <div class="profile__add-button link" type="button"></div>
             </section>
 
             <section class="gallery">
@@ -31,42 +31,42 @@
                     <img src="./images/moscow.jpg" alt="Москва" class="gallery__photo">
                     <div class="gallery__element-description">
                         <h2 class="gallery__element-title">Москва</h2>
-                        <button class="gallery__button-like"></button>
+                        <button class="gallery__button-like link" type="button"></button>
                     </div>
                 </div>
                 <div class="gallery__element">
                     <img src="./images/berlinjpg.jpg" alt="Берлин" class="gallery__photo">
                     <div class="gallery__element-description">
                         <h2 class="gallery__element-title">Берлин</h2>
-                        <button class="gallery__button-like"></button>
+                        <button class="gallery__button-like link" type="button"></button>
                     </div>
                 </div>
                 <div class="gallery__element">
                     <img src="./images/NY.jpg" alt="Нью-Йорк" class="gallery__photo">
                     <div class="gallery__element-description">
                         <h2 class="gallery__element-title">Нью-Йорк</h2>
-                        <button class="gallery__button-like"></button>
+                        <button class="gallery__button-like link" type="button"></button>
                     </div>
                 </div>
                 <div class="gallery__element">
                     <img src="./images/rio.jpg" alt="Рио-де-Жанейро" class="gallery__photo">
                     <div class="gallery__element-description">
                         <h2 class="gallery__element-title">Рио-де-Жанейро</h2>
-                        <button class="gallery__button-like"></button>
+                        <button class="gallery__button-like link" type="button"></button>
                     </div>
                 </div>
                 <div class="gallery__element">
                     <img src="./images/sidney.jpg" alt="Сидней" class="gallery__photo">
                     <div class="gallery__element-description">
                         <h2 class="gallery__element-title">Сидней</h2>
-                        <button class="gallery__button-like"></button>
+                        <button class="gallery__button-like link" type="button"></button>
                     </div>
                 </div>
                 <div class="gallery__element">
                     <img src="./images/manali.jpg" alt="Манали" class="gallery__photo">
                     <div class="gallery__element-description">
                         <h2 class="gallery__element-title">Манали</h2>
-                        <button class="gallery__button-like"></button>
+                        <button class="gallery__button-like link" type="button"></button>
                     </div>
                 </div>
 
@@ -75,7 +75,18 @@
         <footer class="footer">
             <p class="footer__text">© 2020 Mesto Russia</p>
         </footer>
+
+        <div class="popup">
+            <div class="popup__content">
+                <h2 class="popup__content-title">Редактировать профиль</h2>
+                <input class="popup__input" placeholder= "Жак-Ив Кусто" type="text">
+                <input class="popup__input" placeholder= "Исследователь океана" type="text">
+                <button class="popup__button-save link" type="button">Сохранить</button> 
+                <button class="popup__button-close link" type="button"></button>
+            </div>
+        </div>
     </div>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>
