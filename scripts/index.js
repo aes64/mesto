@@ -1,3 +1,4 @@
+//всплытие поп-ап
 const popupButtonEdit = document.querySelector(".profile__button-edit");
 const popupProfile = document.querySelector(".popup");
 
@@ -7,7 +8,7 @@ function openEditProfile() {
 
 popupButtonEdit.addEventListener("click", openEditProfile)
 
-
+//закрытие поп-ап
 const closeEditButton = document.querySelector(".popup__button-close");
 
 function closeEditProfile() {
@@ -15,3 +16,12 @@ function closeEditProfile() {
 }
 
 closeEditButton.addEventListener("click", closeEditProfile)
+
+//активный лайк
+const likeButton = document.getElementsByClassName("gallery__button-like")
+
+console.log(likeButton)
+function clickLikeButton() {
+    likeButton.classList.toggle("gallery__button-like_active");
+}
+likeButton.addEventListener("click", clickLikeButton)
