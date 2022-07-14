@@ -18,10 +18,9 @@ function closeEditProfile() {
 closeEditButton.addEventListener("click", closeEditProfile)
 
 //активный лайк
-const likeButton = document.getElementsByClassName("gallery__button-like")
+const likeButton = document.querySelector(".gallery__button-like");
 
-console.log(likeButton)
 function clickLikeButton() {
     likeButton.classList.toggle("gallery__button-like_active");
 }
-likeButton.addEventListener("click", clickLikeButton)
+likeButton.addEventListener("click", clickLikeButton);
