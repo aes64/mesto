@@ -77,12 +77,14 @@
         </footer>
 
         <div class="popup">
-            <div class="popup__content">
+            <div class="popup__container">
+                <form class="popup__form" name="popap_profile_change">
                 <h2 class="popup__content-title">Редактировать профиль</h2>
-                <input class="popup__input" placeholder= "Жак-Ив Кусто" type="text">
-                <input class="popup__input" placeholder= "Исследователь океана" type="text">
-                <button class="popup__button-save link" type="button">Сохранить</button> 
+                <input class="popup__input-name" name="name" placeholder= "Жак-Ив Кусто" type="text">
+                <input class="popup__input-caption" name="caption" placeholder= "Исследователь океана" type="text">
+                <button class="popup__button-save link" type="submit">Сохранить</button> 
                 <button class="popup__button-close link" type="button"></button>
+            </form>
             </div>
         </div>
     </div>
