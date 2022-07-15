@@ -18,9 +18,30 @@ function closeEditProfile() {
 closeEditButton.addEventListener("click", closeEditProfile)
 
 //активный лайк
-const likeButton = document.querySelector(".gallery__button-like");
+
+const likeButton = document.querySelector(".gallery__button-like")
 
 function clickLikeButton() {
     likeButton.classList.toggle("gallery__button-like_active");
 }
-likeButton.addEventListener("click", clickLikeButton);
+
+likeButton.addEventListener("click", clickLikeButton)
+
+//смена данных профиля
+const formElement = document.querySelector(".popup__form");
+const nameInput = document.querySelector(".popup__input-name");
+const captionInput = document.querySelector(".popup__input-caption");
+const profileName = document.querySelector(".profile__name");
+const profileCaption = document.querySelector(".profile__caption");
+
+
+function formSubmitHandler (evt) {
+    evt.preventDefault();
+    profileName.textContent = nameInput.value;
+    profileCaption.textContent = captionInput.value;
+}
+
+
+formElement.addEventListener('submit', formSubmitHandler); 
+
+
