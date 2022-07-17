@@ -1,47 +1,32 @@
-//всплытие поп-ап
 const popupButtonEdit = document.querySelector(".profile__button-edit");
 const popupProfile = document.querySelector(".popup");
-
-function openEditProfile() {
-    popupProfile.classList.add("popup__is-opened");
-}
-
-popupButtonEdit.addEventListener("click", openEditProfile)
-
-//закрытие поп-ап
-const closeEditButton = document.querySelector(".popup__button-close");
-
-function closeEditProfile() {
-    popupProfile.classList.remove("popup__is-opened");
-}
-
-closeEditButton.addEventListener("click", closeEditProfile)
-
-//активный лайк
-
-const likeButton = document.querySelector(".gallery__button-like")
-
-function clickLikeButton() {
-    likeButton.classList.toggle("gallery__button-like_active");
-}
-
-likeButton.addEventListener("click", clickLikeButton)
-
-//смена данных профиля
 const formElement = document.querySelector(".popup__form");
-const nameInput = document.querySelector(".popup__input-name");
-const captionInput = document.querySelector(".popup__input-caption");
+const nameInput = document.querySelector(".popup__input_name");
+const captionInput = document.querySelector(".popup__input_caption");
 const profileName = document.querySelector(".profile__name");
 const profileCaption = document.querySelector(".profile__caption");
+const closeEditButton = document.querySelector(".popup__button-close");
 
+
+function openEditProfile() {
+    nameInput.value = profileName.textContent;
+    captionInput.value = profileCaption.textContent;
+    popupProfile.classList.add("popup_is-opened");
+}
+
+function closeEditProfile() {
+    popupProfile.classList.remove("popup_is-opened");
+}
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileCaption.textContent = captionInput.value;
+    popupProfile.classList.remove("popup_is-opened");
 }
 
-
+popupButtonEdit.addEventListener("click", openEditProfile)
+closeEditButton.addEventListener("click", closeEditProfile)
 formElement.addEventListener('submit', formSubmitHandler); 
 
 
