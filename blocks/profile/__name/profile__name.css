@@ -13,6 +13,7 @@
     .profile__name {
         font-size: 27px;
         line-height: 33px;
+        max-width: 189px;
         text-align: center;
     }
     
