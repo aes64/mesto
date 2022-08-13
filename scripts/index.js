@@ -67,6 +67,7 @@ function createElement(name, link) {
   imgElem.addEventListener("click", function(evt) {
     const eventTarget = evt.target;
     popupImg.setAttribute('src',eventTarget.src);
+    popupImg.setAttribute('alt',eventTarget.src)
     popupTitle.textContent = titleElem.textContent;
     popupPhoto.classList.add("popup_is-opened");
   })
@@ -80,7 +81,7 @@ function createElement(name, link) {
 
 function addNewElement (evt) {
   evt.preventDefault();
-  const eventTarget = evt.target.closest('.popup');
+  
   gallery.prepend(createElement(newElemName.value, newElemLink.value));
   evt.target.reset()
   popupGallery.classList.remove("popup_is-opened")
