@@ -1,17 +1,17 @@
-.popup_photo-zoom__img {
+.popup__img {
     max-width: 100%;
     max-height: 80%;
 }
 
 
 @media screen and (max-width: 900px) {
-    .popup_photo-zoom__img {
+    .popup__img {
         max-width: 75vh;
 }
 }
 
 @media screen and (max-width: 600px) {
-    .popup_photo-zoom__img {
+    .popup__img {
         max-width: 240px;
 }
 }

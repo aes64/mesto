@@ -10,14 +10,14 @@ const closeEditButton = document.querySelector(".popup__button-close");
 const gallery = document.querySelector(".gallery");
 const likeButton = document.querySelector(".gallery__button-like");
 const popupPhoto = document.querySelector(".popup_photo-zoom");
-const popupImg = document.querySelector(".popup_photo-zoom__img");
-const popupTitle = document.querySelector(".popup_photo-zoom__title");
+const popupImg = document.querySelector(".popup__img");
+const popupTitle = document.querySelector(".popup__title");
 const closePopup = document.querySelector(".popup__button-close_type_photo-zoom");
 const newElemName = document.querySelector(".popup__input_type_place-name");
 const newElemLink = document.querySelector(".popup__input_type_link");
 const addGalleryElemForm = document.querySelector(".popup__form_gallery_change");
 const addElemButtonClose = document.querySelector(".popup__button-close-gallery");
-const popupGallery = document.querySelector(".popup-gallery");
+const popupGallery = document.querySelector(".popup_gallery");
 const addElemButton = document.querySelector(".profile__add-button");
 
 
