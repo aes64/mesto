@@ -27,58 +27,25 @@
             </section>
 
             <section class="gallery">
-                <div class="gallery__element">
-                    <img src="./images/dombay.jpg" alt="Домбай" class="gallery__photo">
-                    <div class="gallery__element-description">
-                        <h2 class="gallery__element-title">Домбай</h2>
-                        <button class="gallery__button-like" type="button"></button>
+                <template id="template-form">
+                    <div class="gallery__element">
+                        <img src="#" class="gallery__photo">
+                        <div class="gallery__element-description">
+                            <h2 class="gallery__element-title"></h2>
+                            <button class="gallery__button-like" type="button"></button> 
+                        </div>
+                        <button class="gallery__button-delete link" type="button"></button>
                     </div>
-                </div>
-                <div class="gallery__element">
-                    <img src="./images/berlinjpg.jpg" alt="Берлин" class="gallery__photo">
-                    <div class="gallery__element-description">
-                        <h2 class="gallery__element-title">Берлин</h2>
-                        <button class="gallery__button-like" type="button"></button>
-                    </div>
-                </div>
-                <div class="gallery__element">
-                    <img src="./images/elbrus.png" alt="Эльбрус" class="gallery__photo">
-                    <div class="gallery__element-description">
-                        <h2 class="gallery__element-title">Эльбрус</h2>
-                        <button class="gallery__button-like" type="button"></button>
-                    </div>
-                </div>
-                <div class="gallery__element">
-                    <img src="./images/rio.jpg" alt="Рио-де-Жанейро" class="gallery__photo">
-                    <div class="gallery__element-description">
-                        <h2 class="gallery__element-title">Рио-де-Жанейро</h2>
-                        <button class="gallery__button-like" type="button"></button>
-                    </div>
-                </div>
-                <div class="gallery__element">
-                    <img src="./images/sidney.jpg" alt="Сидней" class="gallery__photo">
-                    <div class="gallery__element-description">
-                        <h2 class="gallery__element-title">Сидней</h2>
-                        <button class="gallery__button-like" type="button"></button>
-                    </div>
-                </div>
-                <div class="gallery__element">
-                    <img src="./images/manali.jpg" alt="Манали" class="gallery__photo">
-                    <div class="gallery__element-description">
-                        <h2 class="gallery__element-title">Манали</h2>
-                        <button class="gallery__button-like" type="button"></button>
-                    </div>
-                </div>
-
+                </template>
             </section>
         </main>
         <footer class="footer">
             <p class="footer__text">© 2020 Mesto Russia</p>
         </footer>
 
-        <div class="popup">
+        <div class="popup popup__profile">
             <div class="popup__container">
-                <form class="popup__form" name="popap_profile_change">
+                <form class="popup__form" name="popup_profile_change">
                     <h2 class="popup__content-title">Редактировать профиль</h2>
                     <input class="popup__input popup__input_type_name" name="name" type="text">
                     <input class="popup__input popup__input_type_caption" name="caption" type="text">
@@ -86,6 +53,23 @@
                     <button class="popup__button-close link" type="button"></button>
                 </form>
             </div>
+        </div>
+        <div class="popup popup-gallery">
+            <div class="popup__container">
+                <form class="popup__form popup__form_gallery_change" name="popup_gallery_change">
+                    <h2 class="popup__content-title">Новое место</h2>
+                    <input class="popup__input popup__input_type_place-name" name="place-name" type="text" placeholder="Название">
+                    <input class="popup__input popup__input_type_link" name="link" type="text" placeholder="Ссылка на картинку">
+                    <button class="popup__button-save popup__button-save-gallery" type="submit">Создать</button>
+                    <button class="popup__button-close popup__button-close-gallery link" type="button"></button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_photo-zoom">
+            <div class="popup__container popup__container_type_photo-zoom">
+                <img class="popup_photo-zoom__img" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg">
+                <p class="popup_photo-zoom__title"></p>
+                <button  class="popup__button-close popup__button-close_type_photo-zoom link" type="button"></button>
         </div>
     </div>
     <script src="./scripts/index.js"></script>
