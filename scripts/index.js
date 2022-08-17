@@ -1,7 +1,7 @@
 
 const popupButtonEdit = document.querySelector(".profile__button-edit");
 const popupProfile = document.querySelector(".popup_profile");
-const formElement = document.querySelector(".popup__form-profile");
+const formProfile = document.querySelector(".popup__form-profile");
 const nameInput = document.querySelector(".popup__input_type_name");
 const captionInput = document.querySelector(".popup__input_type_caption");
 const profileName = document.querySelector(".profile__name");
@@ -17,6 +17,7 @@ const newElemLink = document.querySelector(".popup__input_type_link");
 const formAddGalleryElem = document.querySelector(".popup__form_gallery_change");
 const popupGallery = document.querySelector(".popup_gallery");
 const buttonAddElem = document.querySelector(".profile__add-button");
+const templateElement = document.querySelector("#template-form").content.querySelector(".gallery__element");
 
 const initialCards = [
   {
@@ -83,7 +84,7 @@ function editProfileData (evt) {
 
 
 function createElement(name, link) {
-  const template = document.querySelector("#template-form").content.querySelector(".gallery__element").cloneNode(true);
+  const template = templateElement.cloneNode(true);
   const imgElem = template.querySelector(".gallery__photo");
   const titleElem = template.querySelector(".gallery__element-title");
   const buttonLike = template.querySelector(".gallery__button-like");
@@ -131,10 +132,10 @@ addInitialGallery();
 
 popupButtonEdit.addEventListener("click", openEditProfile)
 //buttonCloseEditForm.addEventListener("click", closeEditProfile)
-formElement.addEventListener('submit', editProfileData ); 
+formProfile.addEventListener('submit', editProfileData ); 
 popupButtonEdit.addEventListener("click", openEditProfile)
 //buttonCloseEditForm.addEventListener("click", closeEditProfile)
-formElement.addEventListener('submit', editProfileData ); 
+formProfile.addEventListener('submit', editProfileData ); 
 formAddGalleryElem.addEventListener("submit", addNewElement)
 
 /* buttonCloseAddElem.addEventListener("click",function() {
