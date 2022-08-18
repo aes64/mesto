@@ -130,17 +130,10 @@ function addInitialGallery() {
 }
 addInitialGallery();
 
+
 popupButtonEdit.addEventListener("click", openEditProfile)
-//buttonCloseEditForm.addEventListener("click", closeEditProfile)
-formProfile.addEventListener('submit', editProfileData ); 
-popupButtonEdit.addEventListener("click", openEditProfile)
-//buttonCloseEditForm.addEventListener("click", closeEditProfile)
 formProfile.addEventListener('submit', editProfileData ); 
 formAddGalleryElem.addEventListener("submit", addNewElement)
-
-/* buttonCloseAddElem.addEventListener("click",function() {
-  popupGallery.classList.remove("popup_is-opened");
-}) */
 
 buttonAddElem.addEventListener("click", function() {
   openPopup(popupGallery);
