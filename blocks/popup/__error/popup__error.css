@@ -1,0 +1,8 @@
+.popup__error {
+    color: rgba(255, 0, 0, 1);
+    font-size: 12px;
+    line-height: 14px;
+    position: absolute;
+    top:44%;
+    visibility: hidden;
+}

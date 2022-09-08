@@ -46,18 +46,20 @@
 
         <div class="popup popup_profile">
             <div class="popup__container">
-                <form class="popup__form popup__form-profile" name="popup_profile_change">
+                <form class="popup__form popup__form-profile" name="popup_profile_change" novalidate>
                     <h2 class="popup__content-title">Редактировать профиль</h2>
-                    <input class="popup__input popup__input_type_name" name="name" type="text">
-                    <input class="popup__input popup__input_type_caption" name="caption" type="text">
-                    <button class="popup__button-save" type="submit">Сохранить</button>
+                    <input class="popup__input popup__input_type_name" id="name-input" name="name" type="text" minlength="2" maxlength="40" required>
+                    <span class="popup__error name-input-error"></span>
+                    <input class="popup__input popup__input_type_caption" id="caption-input" name="caption" type="text" minlength="2" maxlength="200" required>
+                    <span class="popup__error caption-input-error">slvmlr</span>
+                    <button class="popup__button-save popup__button-save_type_error" type="submit">Сохранить</button>
                     <button class="popup__button-close link" type="button"></button>
                 </form>
             </div>
         </div>
         <div class="popup popup_gallery">
             <div class="popup__container">
-                <form class="popup__form popup__form_gallery_change" name="popup_gallery_change">
+                <form class="popup__form popup__form_gallery_change" name="popup_gallery_change" novalidate>
                     <h2 class="popup__content-title">Новое место</h2>
                     <input class="popup__input popup__input_type_place-name" name="place-name" type="text" placeholder="Название">
                     <input class="popup__input popup__input_type_link" name="link" type="text" placeholder="Ссылка на картинку">
@@ -74,6 +76,7 @@
         </div>
     </div>
 </div>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 
