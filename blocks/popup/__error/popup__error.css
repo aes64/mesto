@@ -6,3 +6,14 @@
     top:44%;
     visibility: hidden;
 }
+
+.popup__error:last-of-type {
+top:60%;
+}
+
+@media screen and (max-width: 600px) {
+    .popup__error {
+        top:47%;
+    }
+    
+}
