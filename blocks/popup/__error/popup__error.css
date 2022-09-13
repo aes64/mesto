@@ -15,5 +15,9 @@ top:60%;
     .popup__error {
         top:47%;
     }
+
+    .popup__error:last-of-type {
+        top:65%;
+        }
     
 }
