@@ -10,6 +10,5 @@
     z-index: 2;
     align-items: center;
     justify-content: center;
-    transition: visibility 0s, opacity 0.5s linear;
     opacity: 0;
 }

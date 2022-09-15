@@ -18,41 +18,25 @@ const popupGallery = document.querySelector(".popup_gallery");
 const buttonAddElem = document.querySelector(".profile__add-button");
 const templateElement = document.querySelector("#template-form").content.querySelector(".gallery__element");
 const popups = document.querySelectorAll(".popup");
-
-
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+const profileButtonSave = document.querySelector(".popup__button-save-gallery");
+const page = document.querySelector(".page");
 
 function openPopup(popup) {
   popup.classList.add("popup_is-opened");
+  page.addEventListener("keydown", function (evt) {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    }
+  })
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
+  page.removeEventListener("keydown", function (evt) {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    }
+  });
 }
 
 function addEventListenersForButtonsClose() {
@@ -102,7 +86,7 @@ function createElement(name, link) {
   imgElem.addEventListener("click", function (evt) {
     const eventTarget = evt.target;
     popupImg.setAttribute("src", eventTarget.src);
-    popupImg.setAttribute("alt", eventTarget.src);
+    popupImg.setAttribute("alt", titleElem.textContent);
     popupTitle.textContent = titleElem.textContent;
     openPopup(popupPhoto);
   });
@@ -113,6 +97,8 @@ function createElement(name, link) {
 function addNewElement(evt) {
   evt.preventDefault();
   gallery.prepend(createElement(newElemName.value, newElemLink.value));
+  profileButtonSave.setAttribute("disabled", "true");
+  profileButtonSave.classList.add("popup__button-save_type_error");
   closePopup(popupGallery);
   evt.target.reset();
 }
@@ -136,7 +122,7 @@ buttonAddElem.addEventListener("click", function () {
 
 
 popups.forEach(function (elem) {
-  elem.addEventListener("click", function (evt) {
+  elem.addEventListener("mousedown", function (evt) {
     if (
       evt.target === evt.currentTarget &&
       elem.classList.contains("popup_is-opened")
@@ -145,10 +131,11 @@ popups.forEach(function (elem) {
     }
   });
 });
-popups.forEach(function (el) {
+
+/* popups.forEach(function (el) {
   el.addEventListener("keydown", function (evt) {
     if (evt.key === "Escape" && el.classList.contains("popup_is-opened")) {
       closePopup(el);
     }
   });
-});
+}); */
