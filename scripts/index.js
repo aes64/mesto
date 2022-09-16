@@ -23,20 +23,19 @@ const page = document.querySelector(".page");
 
 function openPopup(popup) {
   popup.classList.add("popup_is-opened");
-  page.addEventListener("keydown", function (evt) {
-    if (evt.key === "Escape") {
-      closePopup(popup);
-    }
-  })
+  document.addEventListener("keydown", closePopupEsc)
+}
+
+function closePopupEsc(evt) {
+  const popupOpened = document.querySelector('.popup_is-opened')
+  if (evt.key === "Escape") {
+    closePopup(popupOpened)
+  }
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
-  page.removeEventListener("keydown", function (evt) {
-    if (evt.key === "Escape") {
-      closePopup(popup);
-    }
-  });
+  document.removeEventListener("keydown", closePopupEsc);
 }
 
 function addEventListenersForButtonsClose() {
