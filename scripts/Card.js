@@ -1,10 +1,9 @@
-import {buttonClosePhoto, popupTitle, popupImg, popupPhoto} from "./index.js";
+import {buttonClosePhoto, popupTitle, popupImg, popupPhoto, openPopup} from "./index.js";
 class Card {
   constructor(name, link, elemSelector, openPopup, closePopup) {
     this._name = name;
     this._link = link;
     this._elemSelector = elemSelector;
-    this._openPopup = openPopup;
     this._closePopup = closePopup;
   }
 
@@ -29,30 +28,17 @@ class Card {
   }
 
   _setPopupPhoto() {
-    this._openPopup(popupPhoto);
+    openPopup(popupPhoto);
     popupTitle.textContent = this._name;
     popupImg.src = this._link;
     popupImg.alt = this._name;
   }
 
-  _deleteElemHandler(evt) {
-    evt.target.closest(".gallery__element").remove();
-  }
-
-  _addButtonsOnElem() {
-    const deleteButton = this._element.querySelector(".gallery__button-delete");
-    deleteButton.addEventListener("click", (evt) => {
-      this._deleteElemHandler(evt);
-    });
-
-    const likeButton = this._element.querySelector(".gallery__button-like");
-    likeButton.addEventListener("click", (evt) => {
-      this._likeElemHandler(evt);
-    });
+  _handleDeleteClick() {
+    this._element.remove();
   }
 
   _setEventListeners() {
-    this._addButtonsOnElem();
     this._element
       .querySelector(".gallery__photo")
       .addEventListener("click", () => {
@@ -61,9 +47,18 @@ class Card {
     buttonClosePhoto.addEventListener("click", () => {
       this._closePopup(popupPhoto);
     });
+    const deleteButton = this._element.querySelector(".gallery__button-delete");
+    deleteButton.addEventListener("click", (evt) => {
+      this._handleDeleteClick(evt);
+    });
+
+    const likeButton = this._element.querySelector(".gallery__button-like");
+    likeButton.addEventListener("click", (evt) => {
+      this._handleLikeClick(evt);
+    });
   }
 
-  _likeElemHandler(evt) {
+  _handleLikeClick(evt) {
     evt.target.classList.toggle("gallery__button-like_active");
   }
 }

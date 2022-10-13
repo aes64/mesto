@@ -1,11 +1,10 @@
 class FormValidator {
-  constructor(initialObj, formElement) {
-    this._popupForm = initialObj.popupForm;
-    this._popupInput = initialObj.popupInput;
-    this._buttonElement = initialObj.buttonElement;
-    this._popupButtonError = initialObj.popupButtonError;
-    this._popupInputError = initialObj.popupInputError;
-    this._popupErrorActive = initialObj.popupErrorActive;
+  constructor(validationConfig, formElement) {
+    this._popupInput = validationConfig.popupInput;
+    this._buttonElement = validationConfig.buttonElement;
+    this._popupButtonError = validationConfig.popupButtonError;
+    this._popupInputError = validationConfig.popupInputError;
+    this._popupErrorActive = validationConfig.popupErrorActive;
     this._formElement = formElement;
     this._inputList = Array.from(
       this._formElement.querySelectorAll(this._popupInput)
@@ -54,14 +53,14 @@ class FormValidator {
   };
 
   toggleButtonState = () => {
-    if (this._hasInvalidInput(this._inputList)) {
-      this.disabledPopupSubmitButton();
+    if (this._hasInvalidInput()) {
+      this.disablePopupSubmitButton();
     } else {
       this.enablePopupSubmitButton();
     }
   };
 
-  disabledPopupSubmitButton = () => {
+  disablePopupSubmitButton = () => {
     this._submitButtonElement.classList.add(this._popupButtonError);
     this._submitButtonElement.disabled = true;
   };
