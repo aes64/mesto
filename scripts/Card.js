@@ -1,4 +1,4 @@
-import { buttonClosePhoto, popupTitle, popupImg, popupPhoto } from "./index.js";
+import {buttonClosePhoto, popupTitle, popupImg, popupPhoto} from "./index.js";
 class Card {
   constructor(name, link, elemSelector, openPopup, closePopup) {
     this._name = name;
