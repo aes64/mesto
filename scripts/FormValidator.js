@@ -6,7 +6,6 @@ class FormValidator {
     this._popupButtonError = initialObj.popupButtonError;
     this._popupInputError = initialObj.popupInputError;
     this._popupErrorActive = initialObj.popupErrorActive;
-    this._popupErrorActive1 = initialObj.popupErrorActive;
     this._formElement = formElement;
     this._inputList = Array.from(
       this._formElement.querySelectorAll(this._popupInput)
