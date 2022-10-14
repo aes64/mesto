@@ -34,7 +34,7 @@ const initialConfig = {
   popupErrorActive: "popup__error_active",
 };
 
-export function openPopup(popup) {
+ function openPopup(popup) {
   popup.classList.add("popup_is-opened");
   document.addEventListener("keydown", closePopupEsc);
 }
@@ -68,6 +68,13 @@ function openEditProfile() {
   openPopup(popupProfile);
 }
 
+function openPopupImg(name, link) {
+  popupTitle.textContent = name;
+  popupImg.src = link;
+  popupImg.alt = name;
+  openPopup(popupPhoto);
+};
+
 function editProfileData(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -81,7 +88,7 @@ function createCard(name, link) {
     link,
     "#template-form",
     openPopup,
-    closePopup
+    closePopup,
   ).generateElem();
 }
 
@@ -91,11 +98,13 @@ const renderInitialCards = () => {
     gallery.prepend(newCard);
   });
 };
+
 renderInitialCards();
 
+ const elemGalleryValidator = instantiateFormValidator(popupGallery);
+ const profileValidator = instantiateFormValidator(formProfile);
+
 function setValidationOnForms() {
-  const elemGalleryValidator = instantiateFormValidator(popupGallery);
-  const profileValidator = instantiateFormValidator(formProfile);
   elemGalleryValidator.enableValidation();
   elemGalleryValidator.disablePopupSubmitButton();
   profileValidator.enableValidation();
@@ -115,8 +124,9 @@ formAddGalleryElem.addEventListener("submit", function (evt) {
   evt.preventDefault();
   const newElem = createCard(cardNameInput.value, cardLinkInput.value);
   gallery.prepend(newElem);
-  closePopup(popupGallery);
   evt.target.reset();
+  closePopup(popupGallery);
+  elemGalleryValidator.disablePopupSubmitButton();
 });
 buttonAddElem.addEventListener("click", function () {
   openPopup(popupGallery);
@@ -132,6 +142,8 @@ popups.forEach(function (elem) {
   });
 });
 
-
-
-
+buttonClosePhoto.addEventListener("click", () => {
+  closePopup(popupPhoto);
+});
+ 
+export { openPopupImg }

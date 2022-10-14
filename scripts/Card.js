@@ -1,6 +1,6 @@
-import {buttonClosePhoto, popupTitle, popupImg, popupPhoto, openPopup} from "./index.js";
+import {openPopupImg} from "./index.js";
 class Card {
-  constructor(name, link, elemSelector, openPopup, closePopup) {
+  constructor(name, link, elemSelector, closePopup) {
     this._name = name;
     this._link = link;
     this._elemSelector = elemSelector;
@@ -20,18 +20,12 @@ class Card {
     this._setEventListeners();
     const elemPhoto = this._element.querySelector(".gallery__photo");
     const elemName = this._element.querySelector(".gallery__element-title");
+    
     elemName.textContent = this._name;
     elemPhoto.src = this._link;
     elemPhoto.alt = this._name;
 
     return this._element;
-  }
-
-  _setPopupPhoto() {
-    openPopup(popupPhoto);
-    popupTitle.textContent = this._name;
-    popupImg.src = this._link;
-    popupImg.alt = this._name;
   }
 
   _handleDeleteClick() {
@@ -41,12 +35,9 @@ class Card {
   _setEventListeners() {
     this._element
       .querySelector(".gallery__photo")
-      .addEventListener("click", () => {
-        this._setPopupPhoto();
+      .addEventListener("click", ()=> {
+        openPopupImg(this._name, this._link);
       });
-    buttonClosePhoto.addEventListener("click", () => {
-      this._closePopup(popupPhoto);
-    });
     const deleteButton = this._element.querySelector(".gallery__button-delete");
     deleteButton.addEventListener("click", (evt) => {
       this._handleDeleteClick(evt);
