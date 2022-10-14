@@ -1,10 +1,9 @@
 import {openPopupImg} from "./index.js";
 class Card {
-  constructor(name, link, elemSelector, closePopup) {
+  constructor(name, link, elemSelector) {
     this._name = name;
     this._link = link;
     this._elemSelector = elemSelector;
-    this._closePopup = closePopup;
   }
 
   _getTemplate() {
