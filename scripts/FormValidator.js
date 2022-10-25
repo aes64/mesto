@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(validationConfig, formElement) {
     this._popupInput = validationConfig.popupInput;
     this._buttonElement = validationConfig.buttonElement;
@@ -74,4 +74,4 @@ class FormValidator {
     this._setEventListeners();
   };
 }
-export { FormValidator };
+
