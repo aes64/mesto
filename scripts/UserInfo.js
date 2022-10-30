@@ -1,7 +1,7 @@
 class UserInfo {
   constructor({userName, userDescription}) {
     this._userName = document.querySelector(userName);
-    this._userDecription = document.querySelector(userDescription);
+    this._userDescription = document.querySelector(userDescription);
     this._inputUserName = document.querySelector('.popup__input_type_name');
     this._inputUserDescription = document.querySelector('.popup__input_type_caption');
     this._userInfo = this.getUserInfo();
@@ -9,13 +9,13 @@ class UserInfo {
   getUserInfo() {
     return {
       name: this._userName.textContent,
-      description: this._userDecription.textContent,
+      description: this._userDescription.textContent,
     }
   }
 
   setUserInfo(name, description) {
-    this._userName = name;
-    this._userDecription = description;
+    this._userName.textContent = name;
+    this._userDescription.textContent = description;
   }
 
   setFormUserInfo() {

@@ -18,7 +18,7 @@ class Card {
     this._setEventListeners();
     const elemPhoto = this._element.querySelector(".gallery__photo");
     const elemName = this._element.querySelector(".gallery__element-title");
-    
+
     elemName.textContent = this._name;
     elemPhoto.src = this._link;
     elemPhoto.alt = this._name;
@@ -28,11 +28,11 @@ class Card {
     this._element.remove();
   }
   _setEventListeners() {
-    this._element
-      .querySelector(".gallery__photo")
-      .addEventListener("click", ()=> {
-        this._handleCardClick(this._name, this._link);
-      });
+    const imgForClick = this._element.querySelector(".gallery__photo");
+
+    imgForClick.addEventListener("click", () => {
+      this._handleCardClick(this._name, this._link);
+    });
     const deleteButton = this._element.querySelector(".gallery__button-delete");
     deleteButton.addEventListener("click", (evt) => {
       this._handleDeleteClick(evt);
@@ -42,6 +42,7 @@ class Card {
       this._handleLikeClick(evt);
     });
   }
+
   _handleLikeClick(evt) {
     evt.target.classList.toggle("gallery__button-like_active");
   }

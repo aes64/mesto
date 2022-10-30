@@ -73,5 +73,17 @@ export class FormValidator {
   enableValidation = () => {
     this._setEventListeners();
   };
+  /* removeValidation = () => {
+    this._inputList.forEach((input) => {
+      input.removeEventListener("input", () => {
+        this._checkInputValidity(input);
+        this.toggleButtonState();
+      });
+    });
+  } */
+
+  resetValidation() {
+    this._formElement.reset();
+  }
 }
 
