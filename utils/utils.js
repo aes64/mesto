@@ -1,11 +1,19 @@
-import {initialCards, initialConfig} from "../utils/constants.js"
+import { initialCards, initialConfig } from "../utils/constants.js";
 import { PopupWithImage } from "../components/popupWithImage.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { PopupWithForm } from "../components/popupWithForm.js";
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
-export {renderListCards, profileValidator, profileUserInfo, galleryFormPopup, popupProfile, elemGalleryValidator}
+export {
+  renderListCards,
+  setValidationOnForms,
+  profileValidator,
+  profileUserInfo,
+  galleryFormPopup,
+  popupProfile,
+  elemGalleryValidator,
+};
 
 function handleCardClick(name, link) {
   const popupPhotoZoom = new PopupWithImage(
@@ -70,7 +78,12 @@ const popupProfile = new PopupWithForm(
     },
   }
 );
-
+function setValidationOnForms() {
+  profileValidator.enableValidation();
+  profileValidator.enablePopupSubmitButton();
+  elemGalleryValidator.enableValidation();
+  elemGalleryValidator.disablePopupSubmitButton();
+}
 
 const elemGalleryValidator = new FormValidator(
   initialConfig,

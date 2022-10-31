@@ -3,20 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./index.css"/>
+    
     <title>Место</title>
   </head>
 
   <body class="page">
     <div class="content">
       <header class="header">
-        <img src="./images/logo.svg" alt="логотип Место" class="header__logo" />
+        <img src="<%=require('./images/logo.svg')%>" alt="логотип Место" class="header__logo" />
       </header>
       <main>
         <section class="profile">
           <div class="profile__box">
             <img
-              src="./images/profile-photo.jpg"
+              src="<%=require('./images/profile-photo.jpg')%>"
               alt="фото пользователя"
               class="profile__photo"
             />
@@ -146,6 +146,6 @@
         </div>
       </div>
     </div>
-    <script src="./components/index.js" type="module"></script>
+    
   </body>
 </html>
