@@ -2,15 +2,15 @@ import './index.css';
 import { popupButtonEdit, buttonAddElem } from "../utils/constants.js";
 import {
   renderListCards,
-  setValidationOnForms,
   profileUserInfo,
   galleryFormPopup,
   popupProfile,
-  elemGalleryValidator,
 } from "../utils/utils.js";
 
 popupButtonEdit.addEventListener("click", () => {
-  profileUserInfo.setFormUserInfo();
+  const data = profileUserInfo.getUserInfo();
+  document.querySelector('.popup__input_type_name').value = data.name;
+  document.querySelector('.popup__input_type_caption').value = data.description;
   popupProfile.open();
 });
 galleryFormPopup.setEventListeners();
@@ -19,5 +19,5 @@ buttonAddElem.addEventListener("click", () => {
 });
 
 popupProfile.setEventListeners();
-setValidationOnForms();
 renderListCards.renderItems();
+

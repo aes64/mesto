@@ -1,4 +1,4 @@
-import { initialCards, initialConfig } from "../utils/constants.js";
+import { initialCards, initialConfig, gallery } from "../utils/constants.js";
 import { PopupWithImage } from "../components/popupWithImage.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -7,7 +7,6 @@ import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
 export {
   renderListCards,
-  setValidationOnForms,
   profileValidator,
   profileUserInfo,
   galleryFormPopup,
@@ -16,12 +15,10 @@ export {
 };
 
 function handleCardClick(name, link) {
-  const popupPhotoZoom = new PopupWithImage(
-    document.querySelector(".popup_photo-zoom")
-  );
+  const popupPhotoZoom = new PopupWithImage(".popup_photo-zoom");
   popupPhotoZoom.open(name, link);
 }
-
+ 
 const renderListCards = new Section(
   {
     data: initialCards,
@@ -36,23 +33,26 @@ const renderListCards = new Section(
       renderListCards.addItem(cardElem);
     },
   },
-  document.querySelector(".gallery")
+  ".gallery"
 );
 const profileValidator = new FormValidator(
-  initialConfig,
-  document.querySelector(".popup__form-profile")
+  initialConfig, ".popup__form-profile"
 );
+
+profileValidator.enableValidation()
+profileValidator.enablePopupSubmitButton()
+
 
 const profileUserInfo = new UserInfo({
   userName: ".profile__name",
   userDescription: ".profile__caption",
 });
-const galleryFormPopup = new PopupWithForm(
-  document.querySelector(".popup_gallery"),
+const galleryFormPopup = new PopupWithForm(".popup_gallery",
   {
     handleFormSubmit: (inputCardsValues) => {
       const cardElement = createCard(inputCardsValues);
       renderListCards.addItem(cardElement);
+      elemGalleryValidator.resetValidation();
       galleryFormPopup.close();
     },
   }
@@ -68,24 +68,17 @@ const createCard = (item) => {
   const cardElement = addCardsList.generateElem();
   return cardElement;
 };
-const popupProfile = new PopupWithForm(
-  document.querySelector(".popup_profile"),
+const popupProfile = new PopupWithForm(".popup_profile",
   {
     handleFormSubmit: (inputs) => {
       profileUserInfo.setUserInfo(inputs.name, inputs.description);
-      popupProfile.close(popupProfile.getInputValues());
-      //profileValidator.removeValidation()
+      profileValidator.resetValidation();
+      popupProfile.close();
     },
   }
 );
-function setValidationOnForms() {
-  profileValidator.enableValidation();
-  profileValidator.enablePopupSubmitButton();
-  elemGalleryValidator.enableValidation();
-  elemGalleryValidator.disablePopupSubmitButton();
-}
 
 const elemGalleryValidator = new FormValidator(
-  initialConfig,
-  document.querySelector(".popup__form_gallery_change")
+  initialConfig, ".popup__form_gallery_change"
 );
+elemGalleryValidator.enableValidation()

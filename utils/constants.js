@@ -1,6 +1,6 @@
 /* import { Section } from '../scripts/Section.js';
 import { Card } from "../scripts/Card.js"; */
-export {popupButtonEdit, buttonAddElem, initialCards, initialConfig}
+export {popupButtonEdit, buttonAddElem, initialCards, initialConfig, gallery}
 const popupButtonEdit = document.querySelector(".profile__button-edit");
 const buttonAddElem = document.querySelector(".profile__add-button");
 
@@ -39,5 +39,7 @@ const initialConfig = {
   popupInputError: "popup__input_type_error",
   popupErrorActive: "popup__error_active",
 };
+
+const gallery = document.querySelector('.gallery');
 
 

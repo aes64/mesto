@@ -4,6 +4,7 @@ class Card {
     this._link = link;
     this._elemSelector = elemSelector;
     this._handleCardClick = handleCardClick;
+    
   }
 
   _getTemplate() {
