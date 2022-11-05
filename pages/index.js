@@ -21,3 +21,5 @@ buttonAddElem.addEventListener("click", () => {
 popupProfile.setEventListeners();
 renderListCards.renderItems();
 
+
+ 

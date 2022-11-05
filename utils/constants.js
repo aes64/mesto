@@ -1,35 +1,10 @@
 /* import { Section } from '../scripts/Section.js';
 import { Card } from "../scripts/Card.js"; */
-export {popupButtonEdit, buttonAddElem, initialCards, initialConfig, gallery}
+export {popupButtonEdit, buttonAddElem, initialConfig, gallery,nameProfile,descriptionProfile,avatarProfile}
 const popupButtonEdit = document.querySelector(".profile__button-edit");
 const buttonAddElem = document.querySelector(".profile__add-button");
 
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+
 
 const initialConfig = {
   buttonElement: ".popup__form-submit",
@@ -41,5 +16,9 @@ const initialConfig = {
 };
 
 const gallery = document.querySelector('.gallery');
+
+const nameProfile = document.querySelector('.profile__name');
+const descriptionProfile = document.querySelector('.profile__caption');
+const avatarProfile = document.querySelector('.profile__photo');
 
 

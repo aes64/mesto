@@ -1,10 +1,11 @@
-import { initialCards, initialConfig, gallery } from "../utils/constants.js";
+import { initialConfig, gallery,nameProfile,descriptionProfile,avatarProfile } from "../utils/constants.js";
 import { PopupWithImage } from "../components/popupWithImage.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { PopupWithForm } from "../components/popupWithForm.js";
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { Api } from "../components/Api.js"
 export {
   renderListCards,
   profileValidator,
@@ -19,9 +20,19 @@ function handleCardClick(name, link) {
   popupPhotoZoom.open(name, link);
 }
  
+
+const api = new Api;
+api.getInitialGallery().then((result) => {
+ 
+  renderListCards.renderItems(result);
+})
+.catch((err) => {
+  console.log(err);
+});
+
+
 const renderListCards = new Section(
   {
-    data: initialCards,
     renderer: (item) => {
       const card = new Card(
         item.name,
@@ -39,9 +50,20 @@ const profileValidator = new FormValidator(
   initialConfig, ".popup__form-profile"
 );
 
-profileValidator.enableValidation()
+  profileValidator.enableValidation()
 profileValidator.enablePopupSubmitButton()
 
+fetch('https://nomoreparties.co/v1/cohort-52/users/me',{
+  headers: {
+    authorization: '9fcfb2cc-6788-4de3-958e-87d26868b61e'
+  }
+})
+.then(res => res.json())
+.then((result) => {
+  nameProfile.textContent = result.name;
+  descriptionProfile.textContent = result.about;
+  avatarProfile.src = result.avatar
+});
 
 const profileUserInfo = new UserInfo({
   userName: ".profile__name",
@@ -57,6 +79,10 @@ const galleryFormPopup = new PopupWithForm(".popup_gallery",
     },
   }
 );
+
+
+
+
 
 const createCard = (item) => {
   const addCardsList = new Card(
