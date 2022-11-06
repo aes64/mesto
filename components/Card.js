@@ -32,6 +32,13 @@ class Card {
   _handleDeleteClick() {
     this._element.remove();
   }
+
+  _openDeleteConfirm() {
+    document.querySelector('.popup_delete-confirm').classList.add('popup_is-opened');
+
+  }
+
+  
   _setEventListeners() {
     const imgForClick = this._element.querySelector(".gallery__photo");
 
@@ -40,7 +47,7 @@ class Card {
     });
     const deleteButton = this._element.querySelector(".gallery__button-delete");
     deleteButton.addEventListener("click", (evt) => {
-      this._handleDeleteClick(evt);
+      this._openDeleteConfirm();
     });
     const likeButton = this._element.querySelector(".gallery__button-like");
     likeButton.addEventListener("click", (evt) => {

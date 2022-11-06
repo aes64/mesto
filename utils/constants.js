@@ -1,7 +1,8 @@
-export {popupButtonEdit, buttonAddElem, initialConfig, nameProfile,descriptionProfile,avatarProfile, buttonChangeAvatar}
+export {popupButtonEdit, buttonAddElem, initialConfig, nameProfile,descriptionProfile,avatarProfile, buttonChangeAvatar, gallery}
 const popupButtonEdit = document.querySelector(".profile__button-edit");
 const buttonAddElem = document.querySelector(".profile__add-button");
 const buttonChangeAvatar = document.querySelector(".profile__box-avatar");
+const gallery = document.querySelector('.gallery');
 
 
 

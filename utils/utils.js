@@ -1,4 +1,4 @@
-import { initialConfig,nameProfile,descriptionProfile,avatarProfile, buttonChangeAvatar } from "../utils/constants.js";
+import { initialConfig,nameProfile,descriptionProfile,avatarProfile, buttonChangeAvatar, gallery } from "../utils/constants.js";
 import { PopupWithImage } from "../components/popupWithImage.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -29,6 +29,9 @@ api.getInitialGallery().then((result) => {
 .catch((err) => {
   console.log(err);
 });
+
+
+
 
 const handleCardLikeCounter = api.setLikes.bind(api);
 
@@ -64,7 +67,6 @@ then((result) => {
   descriptionProfile.textContent = result.about;
   avatarProfile.src = result.avatar
 });
-
 
 const profileUserInfo = new UserInfo({
   userName: ".profile__name",
@@ -125,5 +127,6 @@ const elemGalleryValidator = new FormValidator(
   initialConfig, ".popup__form_gallery_change"
 );
 elemGalleryValidator.enableValidation()
+
 
 
