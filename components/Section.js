@@ -4,7 +4,7 @@
     this._container = document.querySelector(containerSelector);
   }
 
-  renderItems(items) {
+  renderItems(items = []) {
     items.forEach((item) => {
       this._renderer(item);
     });
