@@ -1,8 +1,10 @@
-/* import { Section } from '../scripts/Section.js';
-import { Card } from "../scripts/Card.js"; */
-export {popupButtonEdit, buttonAddElem, initialConfig, gallery,nameProfile,descriptionProfile,avatarProfile}
+export {popupButtonEdit, buttonAddElem, initialConfig, nameProfile,descriptionProfile,avatarProfile, buttonChangeAvatar}
 const popupButtonEdit = document.querySelector(".profile__button-edit");
 const buttonAddElem = document.querySelector(".profile__add-button");
+const buttonChangeAvatar = document.querySelector(".profile__box-avatar");
+
+
+
 
 
 
@@ -15,7 +17,7 @@ const initialConfig = {
   popupErrorActive: "popup__error_active",
 };
 
-const gallery = document.querySelector('.gallery');
+
 
 const nameProfile = document.querySelector('.profile__name');
 const descriptionProfile = document.querySelector('.profile__caption');

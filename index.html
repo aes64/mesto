@@ -3,23 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <title>Место</title>
   </head>
 
   <body class="page">
     <div class="content">
       <header class="header">
-        <img src="<%=require('./images/logo.svg')%>" alt="логотип Место" class="header__logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="логотип Место"
+          class="header__logo"
+        />
       </header>
       <main>
         <section class="profile">
           <div class="profile__box">
-            <img
-              src=""
-              alt="фото пользователя"
-              class="profile__photo"
-            />
+            <div class="profile__box-avatar">
+              <img
+                src="<%=require('./images/pen-edit.svg')%>"
+                alt="карандаш"
+                class="profile__edit-avatar"
+              />
+              <img src="" alt="фото пользователя" class="profile__photo" />
+            </div>
             <div class="profile__info">
               <h1 class="profile__name"></h1>
               <button class="profile__button-edit link" type="button"></button>
@@ -36,9 +43,9 @@
               <div class="gallery__element-description">
                 <h2 class="gallery__element-title"></h2>
                 <div class="gallery__container">
-                <button class="gallery__button-like" type="button"></button>
-                <span class="gallery__counter-of-likes">0</span>
-              </div>
+                  <button class="gallery__button-like" type="button"></button>
+                  <span class="gallery__counter-of-likes">0</span>
+                </div>
               </div>
               <button
                 class="gallery__button-delete link"
@@ -74,7 +81,7 @@
               <input
                 class="popup__input popup__input_type_caption"
                 id="caption-input"
-                name="description"
+                name="about"
                 type="text"
                 minlength="2"
                 maxlength="200"
@@ -148,7 +155,53 @@
           ></button>
         </div>
       </div>
+
+      <div class="popup popup_delete-confirm">
+        <div class="popup__container">
+          <h2 class="popup__content-title">Вы уверены?</h2>
+          <form class="popup__form popup__delete-confirm">
+            <button
+              class="popup__button-save popup__form-submit popup__button-delete-confirm"
+              type="submit"
+            >
+              Да
+            </button>
+          </form>
+          <button
+            class="popup__button-close popup__button-close_type_delete link"
+            type="button"
+          ></button>
+        </div>
+      </div>
+
+      <div class="popup popup_avatar">
+        <div class="popup__container">
+          <h2 class="popup__content-title">Обновить аватар</h2>
+          <form class="popup__form popup__change-avatar">
+            <fieldset class="popup__fieldset">
+              <input
+                class="popup__input popup__input_type_link-avatar"
+                id="avatar-link"
+                name="avatar"
+                type="url"
+                placeholder="avatar"
+                required
+                
+              />
+            </fieldset>
+            <button
+              class="popup__button-save popup__form-submit popup__button-save-avatar"
+              type="submit"
+            >
+              Сохранить
+            </button>
+          </form>
+          <button
+            class="popup__button-close popup__button-close_type_avatar link"
+            type="button"
+          ></button>
+        </div>
+      </div>
     </div>
-    
   </body>
 </html>

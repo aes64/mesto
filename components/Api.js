@@ -19,9 +19,44 @@ export class Api {
       });
   }
 
-  setNewProfileData() {
-    
+  setNewProfileData({ name, about }) {
+    return fetch(`${this._link}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        about
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
+
+  setNewAvatar(avatar) {
+    return fetch(`${this._link}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(avatar)
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+        
+      });
+  }
+
 
   getInitialGallery() {
     return fetch(`${this._link}/cards`, {
@@ -35,5 +70,49 @@ export class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       });
+  }
+
+  setNewCard({ name, link }) {
+    return fetch(`${this._link}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        link
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
+  setLikes(operation, cardId) {
+    return fetch(`${this._link}/cards/${cardId}/likes`, {
+      method: operation == 'add' ? 'PUT' : "DELETE",
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .then((res) => {
+      return res.likes.length
+    })
+    .catch(e => {});
+  }
+
+  deleteCard(cardId) {
+
   }
 }
