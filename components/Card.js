@@ -1,12 +1,14 @@
-class Card {
-  constructor(name, link, likes, id, handleCardClick, handleCardLikeCounter, elemSelector) {
-    this._name = name;
-    this._link = link;
-    this._likes = likes.length;
+
+class Card  {
+  constructor(item, handleCardClick, handleCardLikeCounter,handleClickOpenPopupDelete, elemSelector) {
+    this._name = item.name;
+    this._link = item.link;
+    this._likes = item.likes.length;
     this._elemSelector = elemSelector;
     this._handleCardClick = handleCardClick;
     this._handleCardLikeCounter = handleCardLikeCounter;
-    this._cardId = id;
+    this._cardId = item._id;
+    this._handleClickOpenPopupDelete = handleClickOpenPopupDelete;
   }
 
   _getTemplate() {
@@ -32,12 +34,6 @@ class Card {
   _handleDeleteClick() {
     this._element.remove();
   }
-
-  _openDeleteConfirm() {
-    document.querySelector('.popup_delete-confirm').classList.add('popup_is-opened');
-
-  }
-
   
   _setEventListeners() {
     const imgForClick = this._element.querySelector(".gallery__photo");
@@ -47,7 +43,7 @@ class Card {
     });
     const deleteButton = this._element.querySelector(".gallery__button-delete");
     deleteButton.addEventListener("click", (evt) => {
-      this._openDeleteConfirm();
+      this._handleClickOpenPopupDelete();
     });
     const likeButton = this._element.querySelector(".gallery__button-like");
     likeButton.addEventListener("click", (evt) => {
@@ -58,7 +54,7 @@ class Card {
   _handleLikeClick(evt) {
       let operation = 'add';
       if (evt.target.classList.contains("gallery__button-like_active")) {
-        operation = 'delete'        
+        operation = 'delete';   
       }
       this._handleCardLikeCounter(operation, this._cardId)
         .then((result) => {

@@ -4,6 +4,13 @@ export class Api {
     this._token = '9fcfb2cc-6788-4de3-958e-87d26868b61e';
     
   }
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+
+  }
 
   getInitialProfileData() {
     return fetch(`${this._link}/users/me`, {
@@ -11,12 +18,7 @@ export class Api {
         authorization: this._token
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   setNewProfileData({ name, about }) {
@@ -31,12 +33,7 @@ export class Api {
         about
       })
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      });
+      .then(this._checkResponse);
   }
 
   setNewAvatar(avatar) {
@@ -48,13 +45,7 @@ export class Api {
       },
       body: JSON.stringify(avatar)
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-        
-      });
+    .then(this._checkResponse);
   }
 
 
@@ -64,12 +55,7 @@ export class Api {
         authorization: this._token
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      });
+    .then(this._checkResponse);
   }
 
   setNewCard({ name, link }) {
@@ -84,35 +70,21 @@ export class Api {
         link
       })
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      });
+    .then(this._checkResponse);
   }
 
   setLikes(operation, cardId) {
     return fetch(`${this._link}/cards/${cardId}/likes`, {
-      method: operation == 'add' ? 'PUT' : "DELETE",
+      method: operation == 'add' ? "PUT" : "DELETE",
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
       }
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._checkResponse)
     .then((res) => {
       return res.likes.length
     })
     .catch(e => {});
-  }
-
-  deleteCard(cardId) {
-
   }
 }

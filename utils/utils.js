@@ -25,12 +25,20 @@ function handleCardClick(name, link) {
 const api = new Api;
 api.getInitialGallery().then((result) => {
   renderListCards.renderItems(result);
+  const cardList = document.querySelector('.gallery').querySelectorAll('.gallery__element');
+  // console.log(cardList);
+  api.getInitialProfileData().then((profileData) => {
+    for (let i = 0; i < result.length; i++) {
+      console.log(result[i], cardList[i])
+      if (result[i].owner._id !== profileData._id) {
+        cardList[i].querySelector('.gallery__button-delete').remove();
+      }
+    }
+  })
 })
 .catch((err) => {
   console.log(err);
 });
-
-
 
 
 const handleCardLikeCounter = api.setLikes.bind(api);
@@ -40,12 +48,10 @@ const renderListCards = new Section(
   {
     renderer: (item) => {
       const card = new Card(
-        item.name,
-        item.link,
-        item.likes,
-        item._id,
+        item,
         handleCardClick,
         handleCardLikeCounter,
+        handleClickOpenPopupDelete,
         "#template-form"
       );
       const cardElem = card.generateElem();
@@ -100,14 +106,14 @@ buttonChangeAvatar.addEventListener('click', () => {
   popupAvatar.setEventListeners();
 })
 
+
+
 const createCard = (item) => {
   const addCardsList = new Card(
-    item.name,
-    item.link,
-    item.likes,
-    item._id,
+    item,
     handleCardClick,
     handleCardLikeCounter,
+    handleClickOpenPopupDelete,
     "#template-form"
   );
   const cardElement = addCardsList.generateElem();
@@ -127,6 +133,14 @@ const elemGalleryValidator = new FormValidator(
   initialConfig, ".popup__form_gallery_change"
 );
 elemGalleryValidator.enableValidation()
+
+const popupDeleteConfirm = new PopupWithForm('.popup_delete-confirm',{})
+
+function handleClickOpenPopupDelete() {
+  popupDeleteConfirm.open();
+  popupDeleteConfirm.setEventListeners()
+}
+
 
 
 
