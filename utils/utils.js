@@ -6,6 +6,7 @@ import { PopupWithForm } from "../components/popupWithForm.js";
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { Api } from "../components/Api.js"
+import { popupDelete } from "../components/PopupDelete.js";
 export {
   renderListCards,
   profileValidator,
@@ -26,10 +27,8 @@ const api = new Api;
 api.getInitialGallery().then((result) => {
   renderListCards.renderItems(result);
   const cardList = document.querySelector('.gallery').querySelectorAll('.gallery__element');
-  // console.log(cardList);
   api.getInitialProfileData().then((profileData) => {
     for (let i = 0; i < result.length; i++) {
-      console.log(result[i], cardList[i])
       if (result[i].owner._id !== profileData._id) {
         cardList[i].querySelector('.gallery__button-delete').remove();
       }
@@ -64,8 +63,11 @@ const profileValidator = new FormValidator(
   initialConfig, ".popup__form-profile"
 );
 
-  profileValidator.enableValidation()
+profileValidator.enableValidation()
 profileValidator.enablePopupSubmitButton()
+
+/* const popupAvatarValidator = FormValidator(initialConfig, ".popup__change-avatar");
+popupAvatarValidator.enableValidation() */
 
 api.getInitialProfileData().
 then((result) => {
@@ -82,7 +84,7 @@ const galleryFormPopup = new PopupWithForm(".popup_gallery",
   {
     handleFormSubmit: () => {
       api.setNewCard(galleryFormPopup.getInputValues()).then((result) => {
-      renderListCards.addItem(createCard(result));
+      renderListCards.prependItem(createCard(result));
       elemGalleryValidator.resetValidation();
       galleryFormPopup.close();
     })
@@ -91,7 +93,6 @@ const galleryFormPopup = new PopupWithForm(".popup_gallery",
     });}
   }
 ); 
-
 
 const popupAvatar = new PopupWithForm(".popup_avatar",
 {handleFormSubmit:()=> {
@@ -105,8 +106,6 @@ buttonChangeAvatar.addEventListener('click', () => {
   popupAvatar.open()
   popupAvatar.setEventListeners();
 })
-
-
 
 const createCard = (item) => {
   const addCardsList = new Card(
@@ -134,9 +133,17 @@ const elemGalleryValidator = new FormValidator(
 );
 elemGalleryValidator.enableValidation()
 
-const popupDeleteConfirm = new PopupWithForm('.popup_delete-confirm',{})
+const popupDeleteConfirm = new popupDelete('.popup_delete-confirm',
+{
+  handleFormSubmit: (cardId) => {
+    popupDeleteConfirm.close()
+    return api.deleteCard(cardId);
+}
+})
 
-function handleClickOpenPopupDelete() {
+function handleClickOpenPopupDelete(cardId, card) {
+  popupDeleteConfirm.card = card;
+  popupDeleteConfirm.cardId = cardId;
   popupDeleteConfirm.open();
   popupDeleteConfirm.setEventListeners()
 }

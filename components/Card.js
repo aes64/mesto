@@ -7,7 +7,7 @@ class Card  {
     this._elemSelector = elemSelector;
     this._handleCardClick = handleCardClick;
     this._handleCardLikeCounter = handleCardLikeCounter;
-    this._cardId = item._id;
+    this.cardId = item._id;
     this._handleClickOpenPopupDelete = handleClickOpenPopupDelete;
   }
 
@@ -43,7 +43,7 @@ class Card  {
     });
     const deleteButton = this._element.querySelector(".gallery__button-delete");
     deleteButton.addEventListener("click", (evt) => {
-      this._handleClickOpenPopupDelete();
+      this._handleClickOpenPopupDelete(this.cardId, this._element);
     });
     const likeButton = this._element.querySelector(".gallery__button-like");
     likeButton.addEventListener("click", (evt) => {
@@ -56,12 +56,13 @@ class Card  {
       if (evt.target.classList.contains("gallery__button-like_active")) {
         operation = 'delete';   
       }
-      this._handleCardLikeCounter(operation, this._cardId)
+      this._handleCardLikeCounter(operation, this.cardId)
         .then((result) => {
           this._element.querySelector(".gallery__counter-of-likes").textContent = result;
           evt.target.classList.toggle("gallery__button-like_active");
         });
     }
+
   
   
 }

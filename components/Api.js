@@ -87,4 +87,16 @@ export class Api {
     })
     .catch(e => {});
   }
+
+  deleteCard(cardId) {
+    return fetch(`${this._link}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(this._checkResponse)
+
+  }
 }

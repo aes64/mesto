@@ -9,6 +9,9 @@
       this._renderer(item);
     });
   }
+  prependItem(item) {
+    this._container.prepend(item);
+  }
 
   addItem(item) {
     this._container.append(item);

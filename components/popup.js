@@ -16,6 +16,7 @@ export default class Popup {
   }
   
   open() {
+    //this._cardId = cardId;
     this._popup.classList.add("popup_is-opened");
     document.addEventListener("keydown", this._handleEscCloseBinded);
   }
