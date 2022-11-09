@@ -83,7 +83,7 @@ export class Api {
     })
     .then(this._checkResponse)
     .then((res) => {
-      return res.likes.length
+      return res
     })
     .catch(e => {});
   }

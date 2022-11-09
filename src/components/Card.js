@@ -57,12 +57,10 @@ class Card  {
       }
       this._handleCardLikeCounter(operation, this.cardId)
         .then((result) => {
-          this._element.querySelector(".gallery__counter-of-likes").textContent = result;
+          this._element.querySelector(".gallery__counter-of-likes").textContent = result.likes.length;
           evt.target.classList.toggle("gallery__button-like_active");
         });
     }
 
-  
-  
 }
 export { Card };
