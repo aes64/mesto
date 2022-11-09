@@ -193,9 +193,9 @@ function handleClickOpenPopupDelete(cardId, card) {
   popupDeleteConfirm.setEventListeners();
 }
 
-function renderLoading(isLoading, button, texting, text) {
+function renderLoading(isLoading, button, replacement, text) {
   if (isLoading) {
-    button.textContent = texting;
+    button.textContent = replacement;
   } else {
     button.textContent = text;
   }
