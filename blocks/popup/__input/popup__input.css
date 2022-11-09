@@ -15,7 +15,7 @@
     color: #000000;
 }
 
-.popup__input:last-of-type {
+.popup__input:not(:first-child) {
     margin: 0 0 48px 0;
 }
 
@@ -23,7 +23,7 @@
     .popup__input {
         margin: 75px 0 30px 0;
     }
-    .popup__input:last-of-type {
+    .popup__input:not(:first-child){
         margin: 0 0 45px 0;
     }
 }

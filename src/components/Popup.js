@@ -14,13 +14,12 @@ export default class Popup {
       this.close();
     }
   }
-  
+
   open() {
-    //this._cardId = cardId;
     this._popup.classList.add("popup_is-opened");
     document.addEventListener("keydown", this._handleEscCloseBinded);
   }
-  
+
   close() {
     this._popup.classList.remove("popup_is-opened");
     document.removeEventListener("keydown", this._handleEscCloseBinded);

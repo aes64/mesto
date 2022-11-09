@@ -25,7 +25,6 @@ class Card  {
     const elemName = this._element.querySelector(".gallery__element-title");
     const counterLikes = this._element.querySelector(".gallery__counter-of-likes");
     counterLikes.textContent = this._likes;
-    
     elemName.textContent = this._name;
     elemPhoto.src = this._link;
     elemPhoto.alt = this._name;
