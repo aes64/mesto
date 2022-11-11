@@ -18,17 +18,28 @@ class Card  {
       .cloneNode(true);
     return elem;
   }
-  generateElem() {
+  generateElem(item) {
     this._element = this._getTemplate();
+    
+
+    this._buttonLike = this._element.querySelector('.gallery__button-like');
+    if (item.hasOwnProperty("isLiked")) {
+      this._buttonLike.classList.add("gallery__button-like_active")
+    }
+    this._buttonDelete = this._element.querySelector('.gallery__button-delete');
+    if (item.hasOwnProperty("isMy")) {
+      this._buttonDelete.remove()
+    }
     this._setEventListeners();
-    const elemPhoto = this._element.querySelector(".gallery__photo");
-    const elemName = this._element.querySelector(".gallery__element-title");
-    const counterLikes = this._element.querySelector(".gallery__counter-of-likes");
-    counterLikes.textContent = this._likes;
-    elemName.textContent = this._name;
-    elemPhoto.src = this._link;
-    elemPhoto.alt = this._name;
+    this._elemPhoto = this._element.querySelector(".gallery__photo");
+    this._elemName = this._element.querySelector(".gallery__element-title");
+    this._counterLikes = this._element.querySelector(".gallery__counter-of-likes");
+    this._counterLikes.textContent = this._likes;
+    this._elemName .textContent = this._name;
+    this._elemPhoto.src = this._link;
+    this._elemPhoto.alt = this._name;
     return this._element;
+    
   }
   _handleDeleteClick() {
     this._element.remove();
@@ -40,12 +51,10 @@ class Card  {
     imgForClick.addEventListener("click", () => {
       this._handleCardClick(this._name, this._link);
     });
-    const deleteButton = this._element.querySelector(".gallery__button-delete");
-    deleteButton.addEventListener("click", (evt) => {
+    this._buttonDelete.addEventListener("click", (evt) => {
       this._handleClickOpenPopupDelete(this.cardId, this._element);
     });
-    const likeButton = this._element.querySelector(".gallery__button-like");
-    likeButton.addEventListener("click", (evt) => {
+    this._buttonLike.addEventListener("click", (evt) => {
       this._handleLikeClick(evt);
     });
   }
@@ -59,6 +68,9 @@ class Card  {
         .then((result) => {
           this._element.querySelector(".gallery__counter-of-likes").textContent = result.likes.length;
           evt.target.classList.toggle("gallery__button-like_active");
+        })
+        .catch((err) => {
+          console.log(err)
         });
     }
 

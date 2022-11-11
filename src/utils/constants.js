@@ -30,3 +30,5 @@ const initialConfig = {
   popupInputError: "popup__input_type_error",
   popupErrorActive: "popup__error_active",
 };
+
+

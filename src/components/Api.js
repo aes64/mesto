@@ -1,7 +1,7 @@
 export class Api {
-  constructor() {
-    this._link = 'https://mesto.nomoreparties.co/v1/cohort-52';
-    this._token = '9fcfb2cc-6788-4de3-958e-87d26868b61e';
+  constructor({baseUrl, headers}) {
+    this._link = baseUrl;
+    this._headers = headers;
     
   }
   _checkResponse(res) {
@@ -13,21 +13,14 @@ export class Api {
   }
 
   getInitialProfileData() {
-    return fetch(`${this._link}/users/me`, {
-      headers: {
-        authorization: this._token
-      }
-    })
+    return fetch(`${this._link}/users/me`, {headers: this._headers})
       .then(this._checkResponse);
   }
 
   setNewProfileData({ name, about }) {
     return fetch(`${this._link}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name,
         about
@@ -39,10 +32,7 @@ export class Api {
   setNewAvatar(avatar) {
     return fetch(`${this._link}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify(avatar)
     })
     .then(this._checkResponse);
@@ -51,9 +41,7 @@ export class Api {
 
   getInitialGallery() {
     return fetch(`${this._link}/cards`, {
-      headers: {
-        authorization: this._token
-      }
+      headers: this._headers
     })
     .then(this._checkResponse);
   }
@@ -61,10 +49,7 @@ export class Api {
   setNewCard({ name, link }) {
     return fetch(`${this._link}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name,
         link
@@ -76,27 +61,19 @@ export class Api {
   setLikes(operation, cardId) {
     return fetch(`${this._link}/cards/${cardId}/likes`, {
       method: operation == 'add' ? "PUT" : "DELETE",
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
     .then(this._checkResponse)
     .then((res) => {
       return res
     })
-    .catch(e => {});
   }
 
   deleteCard(cardId) {
     return fetch(`${this._link}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
     .then(this._checkResponse)
-
   }
 }
