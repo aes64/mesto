@@ -10,7 +10,9 @@ import {
   buttonSaveAvatar,
   buttonSaveProfile,
   buttonConfirm,
-  gallerySaveButton
+  gallerySaveButton,
+  inputName,
+  inputCaption
 } from "../utils/constants.js";
 
 import {renderLoading} from "../utils/utils.js"
@@ -33,9 +35,7 @@ headers: {
 
 Promise.all([api.getInitialGallery(), api.getInitialProfileData()])
 .then(([cardsData, profileData]) => {
-  nameProfile.textContent = profileData.name;
-  descriptionProfile.textContent = profileData.about;
-  avatarProfile.src = profileData.avatar;
+  profileUserInfo.setUserInfo(profileData);
   for (let i = 0; i < cardsData.length; i++) {
     if (cardsData[i].owner._id !== profileData._id) {
       cardsData[i].isMy = false
@@ -61,15 +61,7 @@ const handleCardLikeCounter = api.setLikes.bind(api);
 const renderListCards = new Section(
   {
     renderer: (item)  => {
-      const card = new Card(
-        item,
-        handleCardClick,
-        handleCardLikeCounter,
-        handleClickOpenPopupDelete,
-        "#template-form",
-        
-      );
-      const cardElem = card.generateElem(item);
+      const cardElem = createCard(item);
       renderListCards.addItem(cardElem);
     },
   },
@@ -91,14 +83,13 @@ const popupGallery = new PopupWithForm(".popup_gallery", {
       .then((result) => {
         renderListCards.prependItem(createCard(result));
       })
+      .then(() => popupGallery.close())
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         renderLoading(false, gallerySaveButton, "Сохранение...", "Сохранить");
-        
       })
-      .then(popupGallery.close());
   },
 });
 
@@ -108,11 +99,12 @@ const popupAvatar = new PopupWithForm(".popup_avatar", {
     api
       .setNewAvatar(popupAvatar.getInputValues())
       .then((result) => {
-        avatarProfile.src = result.avatar;
+        profileUserInfo.setUserInfo(result)
       })
+      .then(() => popupAvatar.close())
       .finally(() => {
         renderLoading(false, buttonSaveAvatar, "Сохранение...", "Сохранить");
-        popupAvatar.close();
+        
       })
   },
 });
@@ -126,13 +118,12 @@ const popupProfile = new PopupWithForm(".popup_profile", {
       .then((result) => {
         profileUserInfo.setUserInfo(result);
       })
+      .then(() => popupProfile.close())
       .catch((err) => {
         console.log(err);
       })
-      .then(popupProfile.close())
       .finally(() => {
         renderLoading(false, buttonSaveProfile, "Сохранение...", "Сохранить");
-        
       });
   },
 });
@@ -146,12 +137,12 @@ const popupDeleteConfirm = new PopupDelete(".popup_delete-confirm", {
     return api
       .deleteCard(cardId)
       .then(element.remove())
+      .then(popupDeleteConfirm.close())
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         renderLoading(false, buttonConfirm, "Подождите...", "Да");
-        popupDeleteConfirm.close();
       });
   },
 });
@@ -178,6 +169,10 @@ const elemGalleryValidator = new FormValidator(
 elemGalleryValidator.enableValidation();
 profileValidator.enableValidation();
 profileValidator.enablePopupSubmitButton();
+popupAvatarValidator.enableValidation();
+
+
+
 
 function createCard (item) {
   const addCardsList = new Card(
@@ -209,8 +204,9 @@ function handleClickOpenPopupDelete(cardId, card) {
 
 popupButtonEdit.addEventListener("click", () => {
   const data = profileUserInfo.getUserInfo();
-  document.querySelector(".popup__input_type_name").value = data.name;
-  document.querySelector(".popup__input_type_caption").value = data.about;
+  inputName.value = data.name;
+  inputCaption.value = data.about;
+  profileValidator.resetValidation();
   popupProfile.open();
 });
 popupGallery.setEventListeners();
@@ -218,11 +214,18 @@ popupDeleteConfirm.setEventListeners();
 popupAvatar.setEventListeners();
 popupProfile.setEventListeners();
 popupPhotoZoom.setEventListeners()
+
+
+
 buttonAddElem.addEventListener("click", () => {
+  elemGalleryValidator.resetValidation();
   popupGallery.open();
 });
-renderListCards.renderItems();
+
 buttonChangeAvatar.addEventListener("click", () => {
+  popupAvatarValidator.resetValidation()
   popupAvatar.open();
-  popupAvatarValidator.enableValidation();
+
+  
+  
 });

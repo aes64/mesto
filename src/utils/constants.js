@@ -10,6 +10,8 @@ export {
   buttonSaveProfile,
   buttonConfirm,
   gallerySaveButton,
+  inputName,
+  inputCaption
 };
 const popupButtonEdit = document.querySelector(".profile__button-edit");
 const buttonAddElem = document.querySelector(".profile__add-button");
@@ -21,6 +23,8 @@ const buttonSaveAvatar = document.querySelector(".popup__button-save-avatar");
 const buttonSaveProfile = document.querySelector(".popup__button-save-profile");
 const buttonConfirm = document.querySelector(".popup__button-delete-confirm");
 const gallerySaveButton = document.querySelector(".popup__button-save-gallery");
+const inputName = document.querySelector(".popup__input_type_name");
+const inputCaption = document.querySelector(".popup__input_type_caption");
 
 const initialConfig = {
   buttonElement: ".popup__form-submit",

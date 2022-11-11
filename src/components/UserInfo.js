@@ -15,6 +15,8 @@ class UserInfo {
 setUserInfo(item) {
     this._userName.textContent = item.name;
     this._userDescription.textContent = item.about;
+    this._userAvatar.src = item.avatar;
+    this._id = item._id;
   }
 }
 
